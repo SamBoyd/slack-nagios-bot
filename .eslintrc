@@ -1,0 +1,31 @@
+{
+  "extends": "airbnb",
+  "rules": {
+    "semi": [
+      "error",
+      "never"
+    ],
+    "indent": [
+      "error",
+      4
+    ]
+  },
+  "parserOptions": {
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true
+    }
+  },
+  "settings": {
+    "import/resolver": {
+      "babel-module-alias": {
+        "extensions": [
+          ".js",
+          ".jsx",
+          ".es",
+          ".es6",
+          ".mjs"
+        ]
+      }
+    }
+  }
+}

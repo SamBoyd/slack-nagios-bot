@@ -1,0 +1,10 @@
+### Intellij ###
+.idea/*
+!.idea/runConfigurations
+
+### Node ###
+node_modules
+npm-debug.log
+
+lib
+errorShotsgit
