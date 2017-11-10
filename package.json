@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "prettier": "prettier --write --single-quote --trailing-comma es5 src/*",
+    "prettier": "prettier --write --single-quote --trailing-comma es5 src/* test/*",
     "clean": "rm -rf lib/*",
     "build": "mkdir -p lib && babel src bot.js -d lib",
     "start": "npm run clean && npm run build && node lib/bot.js",
