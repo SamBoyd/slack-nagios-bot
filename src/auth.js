@@ -1,3 +1,3 @@
 export default {
-    'apiToken': 'your-api-key-from-slack'
+  apiToken: 'your-api-key-from-slack',
 };

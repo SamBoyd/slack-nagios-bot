@@ -1,4 +1,4 @@
-import {handleAcknowledgement} from './acknowledgeHandler'
+import { handleAcknowledgement } from './acknowledgeHandler'
 import Botkit from 'botkit'
 import auth from './auth'
 
