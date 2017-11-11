@@ -10,24 +10,26 @@ export const handleAcknowledgement = (bot, message) => {
     return;
   }
 
+  const callback = (err, res) => {
+    if (res) {
+      bot.reply(
+        message,
+        'Service:' +
+          parsedAcknowledge.service +
+          ', Host:' +
+          parsedAcknowledge.host
+      );
+    } else {
+      bot.reply(message, 'Unable to acknowledge that service');
+    }
+  };
+
   isAService(parsedAcknowledge.service, parsedAcknowledge.host)
     .then(() => {
       acknowledgeService(
         parsedAcknowledge.host,
         parsedAcknowledge.service,
-        (err, res) => {
-          if (res) {
-            bot.reply(
-              message,
-              'Service:' +
-                parsedAcknowledge.service +
-                ', Host:' +
-                parsedAcknowledge.host
-            );
-          } else {
-            bot.reply(message, 'Unable to acknowledge that service');
-          }
-        }
+        callback
       );
     })
     .catch(() => {

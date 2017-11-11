@@ -13,22 +13,31 @@ export const handleDowntime = (bot, message) => {
     return;
   }
 
-  if (parsedInput.service) {
+  const callbackForServiceDowntime = (err, res) => {
+    if (err) {
+      bot.reply(
+        message,
+        'Service:' + parsedInput.service + ', Host:' + parsedInput.host
+      );
+    } else {
+      bot.reply(message, 'Unable to add downtime for that service');
+    }
+  };
+
+  const callbackForHostDowntime = (err, res) => {
+    if (err) {
+      bot.reply(message, 'Unable to add downtime for that host');
+    } else {
+      bot.reply(message, 'Host:' + parsedInput.host);
+    }
+  };
+
+  if (isAServiceDowntimeRequest(parsedInput)) {
     scheduleDowntimeForService(
       parsedInput.host,
       parsedInput.service,
       parsedInput.duration,
-      (err, res) => {
-        if (err) {
-          console.log('', err);
-          bot.reply(message, 'Unable to add downtime for that service');
-        } else {
-          bot.reply(
-            message,
-            'Service:' + parsedInput.service + ', Host:' + parsedInput.host
-          );
-        }
-      }
+      callbackForServiceDowntime
     );
   } else {
     isAHost(parsedInput.host)
@@ -36,17 +45,15 @@ export const handleDowntime = (bot, message) => {
         scheduleDowntimeForHost(
           parsedInput.host,
           parsedInput.duration,
-          (err, res) => {
-            if (err) {
-              bot.reply(message, 'Unable to add downtime for that host');
-            } else {
-              bot.reply(message, 'Host:' + parsedInput.host);
-            }
-          }
+          callbackForHostDowntime
         );
       })
       .catch(() => {
         bot.reply(message, "I can't seem to find that host");
       });
   }
+};
+
+const isAServiceDowntimeRequest = input => {
+  return input.service !== undefined;
 };
