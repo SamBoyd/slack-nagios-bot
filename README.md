@@ -35,16 +35,14 @@ Install the dependencies
 npm install
 ```
 
-Set the correct apiToken in auth.js. You can check out the slack docs for creating bot users [here](https://api.slack.com/bot-users)
+You'll need an api tocken from Slack. You can check out the slack docs for creating bot users [here](https://api.slack.com/bot-users)
  
-Your auth.js should look something like this
+Create a file .env in the project root directory. In it define the api token and the url of the box where your nagios is running. It should look something like this:
 ```
-export default {
-    'apiToken': 'xoxp-XXXXXXXX-XXXXXXXX-XXXXX'
-};
+API_TOKEN=xoxb-XXXXXXXXXXXXX-XXXXXXXXXXXXXXXXXXXXXXXX
+NAGIOS_URL=example.com
 
 ```
-In nagiosRequest.js and nagiosServiceApi.js replace *http://example.com* with the hostname of your Nagios service
 
 Start the bot
 

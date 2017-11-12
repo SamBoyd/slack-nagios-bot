@@ -1,6 +1,6 @@
 import { handleAcknowledgement } from './acknowledgeHandler'
 import Botkit from 'botkit'
-import auth from './auth'
+require('dotenv').config();
 
 const reactionIcon = (bot, message) => {
     bot.api.reactions.add({
@@ -19,7 +19,7 @@ let controller = Botkit.slackbot({
 });
 
 let bot = controller.spawn({
-    token: auth.apiToken
+    token: process.env.API_TOKEN
 }).startRTM();
 
 controller.hears('acknowledge', ['direct_message', 'direct_mention', 'mention'], (bot, message) => {

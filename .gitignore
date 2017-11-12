@@ -8,3 +8,6 @@ npm-debug.log
 
 lib
 errorShotsgit
+
+#.env contains your api_token and server url
+.env

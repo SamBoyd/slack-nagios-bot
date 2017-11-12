@@ -1,11 +1,11 @@
 const superagent = require('superagent');
 
-const STATUS_ENDPOINT = 'http://example.com/status';
-
 export const getAllServices = () => {
+  const endpoint = process.env.NAGIOS_URL ||  'http://example.com';
+
   return new Promise((resolve, reject) => {
     superagent
-      .get(STATUS_ENDPOINT)
+      .get(endpoint + '/status')
       .then(res => {
         resolve(JSON.parse(res.text).content);
       })
